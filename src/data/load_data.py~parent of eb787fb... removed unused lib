@@ -1,0 +1,52 @@
+import yaml
+import argparse
+import random
+import numpy as np
+import pandas as pd
+
+
+def read_param(config):
+    """
+    This function helps to load config's from params.yaml file
+    :param config:
+    :return:
+    """
+    with open(config, 'r') as f:
+        config = yaml.safe_load(f)
+    return config
+
+
+def load_data(dataset_path):
+    """
+    This function helps load the randomly selected 1M rows from csv into dataframe
+    :param dataset_path:
+    :return:
+    """
+    n = sum(1 for line in open(dataset_path)) - 1  # number of records in file (excludes header)
+    s = 1000000  # desired sample size
+    skip = sorted(random.sample(range(1, n + 1), n - s))
+    df = pd.read_csv(dataset_path,skiprows=skip)
+    return df
+
+
+def load_raw_data(config):
+    """
+    This function called to load the data from external data to rawdata
+    :param config:
+    :return:
+    """
+    config = read_param(config)
+    external_data_path = config['external_data_config']['external_data_csv']
+    raw_data_path = config['raw_data_config']['raw_data_csv']
+
+    df = load_data(external_data_path)
+    df.to_csv(raw_data_path, index=False)
+
+
+if __name__ == '__main__':
+    args = argparse.ArgumentParser()
+    args.add_argument('--config', default='params.yaml')
+    parsed_args = args.parse_args()
+    load_raw_data(parsed_args.config)
+
+

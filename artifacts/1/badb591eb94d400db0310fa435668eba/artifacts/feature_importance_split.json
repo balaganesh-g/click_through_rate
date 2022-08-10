@@ -1,0 +1,23 @@
+{
+  "C1": 182,
+  "banner_pos": 256,
+  "device_type": 118,
+  "device_conn_type": 282,
+  "C14": 2391,
+  "C15": 201,
+  "C16": 163,
+  "C17": 1368,
+  "C18": 347,
+  "C19": 1197,
+  "C20": 1589,
+  "C21": 1146,
+  "site_id_int": 2162,
+  "site_domain_int": 1991,
+  "site_category_int": 460,
+  "app_id_int": 1675,
+  "app_domain_int": 649,
+  "app_category_int": 465,
+  "device_id_int": 1918,
+  "device_ip_int": 3447,
+  "device_model_int": 3283
+}

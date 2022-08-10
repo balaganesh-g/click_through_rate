@@ -1,0 +1,79 @@
+schema: '2.0'
+stages:
+  raw_dataset_creation:
+    cmd: python src/data/load_data.py --config=params.yaml
+    deps:
+    - path: data/external/train.csv
+      md5: 96e8a9998c257ba4058dee4a79b90a0f
+      size: 6311147778
+    - path: src/data/load_data.py
+      md5: a6fc8dab2e3a1d7ea1a532881c3abb2b
+      size: 1329
+    outs:
+    - path: data/raw/train.csv
+      md5: 5cfd6edce8b6e1935cc168580fbc4b24
+      size: 155101386
+  split_data:
+    cmd: python src/data/split_data.py --config=params.yaml
+    deps:
+    - path: data/raw/train.csv
+      md5: 5cfd6edce8b6e1935cc168580fbc4b24
+      size: 155101386
+    - path: src/data/split_data.py
+      md5: c73b1bddd4d703f206a6ea0850d440a5
+      size: 2237
+    outs:
+    - path: data/processed/ctr_test.csv
+      md5: 4cbe2e98e6d5d54e086369689fcbbc5d
+      size: 31021722
+    - path: data/processed/ctr_train.csv
+      md5: 0f547b7faf4ebbc4b5eb02a0b6dd56af
+      size: 124079851
+  model_train:
+    cmd: python src/models/train_model.py --config=params.yaml
+    deps:
+    - path: data/processed/ctr_test.csv
+      md5: 4cbe2e98e6d5d54e086369689fcbbc5d
+      size: 31021722
+    - path: data/processed/ctr_train.csv
+      md5: 0f547b7faf4ebbc4b5eb02a0b6dd56af
+      size: 124079851
+    - path: src/models/train_model.py
+      md5: b88d25335472ed834c206ce2b5db55a7
+      size: 5120
+    params:
+      params.yaml:
+        lightgbm:
+          task: train
+          boosting_type: gbdt
+          objective: binary
+          metric: binary_logloss
+          num_leaves: 31
+          learning_rate: 0.08
+          feature_fraction: 0.7
+          bagging_fraction: 0.3
+          bagging_freq: 5
+          verbose: 0
+  log_production_model:
+    cmd: python src/models/production_model_selection.py --config=params.yaml
+    deps:
+    - path: src/models/production_model_selection.py
+      md5: ddc51c0065738fe9e096ed8d7150b135
+      size: 1696
+    params:
+      params.yaml:
+        lightgbm:
+          task: train
+          boosting_type: gbdt
+          objective: binary
+          metric: binary_logloss
+          num_leaves: 31
+          learning_rate: 0.08
+          feature_fraction: 0.7
+          bagging_fraction: 0.3
+          bagging_freq: 5
+          verbose: 0
+    outs:
+    - path: models/model.joblib
+      md5: 3c0bc95d914c418ceb5407527bc14c2a
+      size: 2968582

@@ -1,0 +1,28 @@
+artifact_path: model
+flavors:
+  lightgbm:
+    code: null
+    data: model.lgb
+    lgb_version: 3.3.2
+    model_class: lightgbm.basic.Booster
+  python_function:
+    data: model.lgb
+    env: conda.yaml
+    loader_module: mlflow.lightgbm
+    python_version: 3.8.10
+mlflow_version: 1.27.0
+model_uuid: 4358b2daf5164b8288b573b721ff9151
+run_id: badb591eb94d400db0310fa435668eba
+signature:
+  inputs: '[{"name": "C1", "type": "long"}, {"name": "banner_pos", "type": "long"},
+    {"name": "device_type", "type": "long"}, {"name": "device_conn_type", "type":
+    "long"}, {"name": "C14", "type": "long"}, {"name": "C15", "type": "long"}, {"name":
+    "C16", "type": "long"}, {"name": "C17", "type": "long"}, {"name": "C18", "type":
+    "long"}, {"name": "C19", "type": "long"}, {"name": "C20", "type": "long"}, {"name":
+    "C21", "type": "long"}, {"name": "site_id_int", "type": "long"}, {"name": "site_domain_int",
+    "type": "long"}, {"name": "site_category_int", "type": "long"}, {"name": "app_id_int",
+    "type": "long"}, {"name": "app_domain_int", "type": "long"}, {"name": "app_category_int",
+    "type": "long"}, {"name": "device_id_int", "type": "long"}, {"name": "device_ip_int",
+    "type": "long"}, {"name": "device_model_int", "type": "long"}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1]}}]'
+utc_time_created: '2022-08-06 06:57:35.394471'
