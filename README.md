@@ -1,7 +1,14 @@
-ctr_prediction
+click_through_rate_prediction
 ==============================
 
-This is the poc project on predicting click through rate
+This is the POC project on complete machine learning life-cycle
+1) <p><small>Project structure is based on <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+2) <p><small>To manage and version the data <a target="_blank" href="https://dvc.org/doc">Data Version Control(DVC) is used</a>.</small></p>
+3) <p><small>To track and manage the model <a target="_blank" href="https://www.mlflow.org/docs/latest/tutorials-and-examples/tutorial.html">MLflow is used</a>.</small></p>
+4) <p><small>To access the trained model as a service <a target="_blank" href="https://flask.palletsprojects.com/en/2.2.x/">flask is used</a>.</small></p> 
+5) <p><small>To unittest the application <a target="_blank" href="https://docs.pytest.org/en/7.1.x/">Pytest is used</a>.</small></p> 
+6) Github actions are used to automate the CI-CD
+7) <p><small>To monitor the drift <a target="_blank" href="https://docs.evidentlyai.com/tutorial">Evidently AI is used</a>.</small></p>
 
 Project Organization
 ------------
@@ -53,5 +60,3 @@ Project Organization
 
 
 --------
-
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
